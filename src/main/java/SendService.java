@@ -15,14 +15,14 @@ public class SendService {
     private final VkApiClient api;
     private final GroupActor groupActor;
     private final ReportService reportService;
-    private final NameConvertor nameConvertor;
+    private final NameConvertorService nameConvertorService;
 
     private int currentSendCount = 0;
 
-    SendService(VkApiClient api, GroupActor groupActor, NameConvertor nameConvertor) {
+    SendService(VkApiClient api, GroupActor groupActor, NameConvertorService nameConvertorService) {
         this.api = api;
         this.groupActor = groupActor;
-        this.nameConvertor = nameConvertor;
+        this.nameConvertorService = nameConvertorService;
         this.reportService = new ReportService();
     }
 
@@ -46,7 +46,7 @@ public class SendService {
         return Arrays.stream(names)
                 .map((name) -> {
                     try {
-                        return nameConvertor.convertNameToId(name);
+                        return nameConvertorService.convertNameToId(name);
                     } catch (ClientException | ApiException e) {
                         e.printStackTrace();
                         reportService.addMessageToReport(

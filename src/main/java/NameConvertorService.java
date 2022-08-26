@@ -4,11 +4,11 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.utils.responses.ResolveScreenNameResponse;
 
-public class NameConvertor {
+public class NameConvertorService {
     private final VkApiClient api;
     private final GroupActor groupActor;
 
-    NameConvertor(VkApiClient api, GroupActor groupActor) {
+    NameConvertorService(VkApiClient api, GroupActor groupActor) {
         this.api = api;
         this.groupActor = groupActor;
     }
