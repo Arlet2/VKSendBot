@@ -62,8 +62,8 @@ public class Application {
 
         boolean isInterrupted = false;
 
-        System.out.println("Welcome to SendBot v. "+
-                Order.class.getPackage().getImplementationVersion()+" (by Arlet)!");
+        System.out.println("Welcome to SendBot v. " +
+                Order.class.getPackage().getImplementationVersion() + " (by Arlet)!");
         System.out.println("https://github.com/Arlet2/VKSendBot for guide for this application");
         System.out.println("\nUse help to see all commands");
 
@@ -84,12 +84,22 @@ public class Application {
                     System.out.println("view dirName - view all .order files on directory");
                     break;
                 case "view":
-                    List<String> fileNames = FileViewer.getAllFilesFromDir(input[1]);
-                    System.out.println("Files .order on " + input[1] + "...");
+                    List<String> fileNames;
+                    if (input.length == 1)
+                        fileNames = FileViewer.getAllFilesFromDir("");
+                    else
+                        fileNames = FileViewer.getAllFilesFromDir(input[1]);
+
+                    if (input.length == 1)
+                        System.out.println("Files .order on this directory...");
+                    else
+                        System.out.println("Files .order on " + input[1] + "...");
+
                     if (Optional.ofNullable(fileNames).isPresent())
                         fileNames.forEach(System.out::println);
                     else
                         System.out.println("No any files.");
+
                     break;
                 case "execute":
                     try {
