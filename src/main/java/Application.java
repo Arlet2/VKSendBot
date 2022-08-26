@@ -102,14 +102,25 @@ public class Application {
 
                     break;
                 case "execute":
+                    Order order;
                     try {
-                        Order order = OrderParser.parseOrder(input[1]);
-                        sendService.executeSendOrder(order);
+                        order = OrderParser.parseOrder(input[1]);
                     } catch (IOException e) {
                         System.out.println("File " + input[1] + " is not found");
                         e.printStackTrace();
                         break;
                     }
+                    System.out.println("ORDER MESSAGE:");
+                    System.out.println(order.getMsg());
+
+                    System.out.println("Are you sure to continue? (y/n)");
+                    input[0] = scanner.nextLine();
+
+                    if (input[0].equals("y") || input[0].equals("yes"))
+                        sendService.executeSendOrder(order);
+                    else
+                        System.out.println("Order is declined");
+
                     break;
                 default:
                     System.out.println("Unknown command. Please, use help to see all commands");
