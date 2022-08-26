@@ -10,6 +10,7 @@ import utils.FileViewer;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -89,8 +90,9 @@ public class Application {
                     try {
                         Order order = OrderParser.parseOrder(input[1]);
                         sendService.executeSendOrder(order);
-                    } catch (FileNotFoundException e) {
+                    } catch (IOException e) {
                         System.out.println("File " + input[1] + " is not found");
+                        e.printStackTrace();
                         break;
                     }
                     break;
