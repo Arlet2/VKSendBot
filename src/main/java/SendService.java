@@ -53,7 +53,7 @@ public class SendService {
                     } catch (ClientException | ApiException e) {
                         e.printStackTrace();
                         reportService.addMessageToReport(
-                                "ERROR WITH NAME CONVERING: " + name + " Details: " + e.getMessage());
+                                "ERROR WITH NAME CONVERTING: " + name + " Details: " + e.getMessage());
                         return null;
                     }
                 })
