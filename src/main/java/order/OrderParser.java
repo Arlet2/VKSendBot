@@ -5,6 +5,8 @@ import utils.RegexSearcher;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class OrderParser {
 
@@ -15,7 +17,7 @@ public class OrderParser {
 
     }
 
-    public static Order parseOrder(String path) throws FileNotFoundException {
+    public static Order parseOrder(String path) throws IOException {
         String orderContent = getContentFromFile(path);
 
         String msg = RegexSearcher.searchFirst(MESSAGE_REGEX, orderContent);
@@ -25,8 +27,8 @@ public class OrderParser {
         return new Order(msg, names.split("\n"));
     }
 
-    private static String getContentFromFile(String path) throws FileNotFoundException {
-        BufferedReader reader = new BufferedReader(new FileReader(path));
+    private static String getContentFromFile(String path) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8));
 
         StringBuilder stringBuilder = new StringBuilder();
 
