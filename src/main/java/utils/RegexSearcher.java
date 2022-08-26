@@ -19,7 +19,7 @@ public class RegexSearcher {
         }
     }
 
-    public static int searchFindCount(String regex, String input) {
+    public static int searchFoundsCount(String regex, String input) {
         Matcher matcher = Pattern.compile(regex).matcher(input);
         int counter = 0;
         while (matcher.find()) counter++;
