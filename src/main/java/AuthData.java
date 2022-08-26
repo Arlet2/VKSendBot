@@ -1,17 +1,25 @@
 public class AuthData {
-    private final String key;
-    private final String username;
+    private final String token;
+    private final String secretKey;
+    private final String serviceKey;
+    private final int appId;
+    private final int groupId;
 
-    AuthData(String key, String username) {
-        this.key = key;
-        this.username = username;
+    AuthData(String token, int appId, String secretKey, String serviceKey, int groupId) {
+        this.token = token;
+        this.appId = appId;
+        this.secretKey = secretKey;
+        this.serviceKey = serviceKey;
+        this.groupId = groupId;
     }
 
-    public String getKey() {
-        return key;
+    public String getToken() {
+        return token;
     }
 
-    public String getUsername() {
-        return username;
+
+    public int getGroupId() {
+        return groupId;
     }
+
 }
