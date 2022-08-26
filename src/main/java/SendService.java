@@ -37,7 +37,8 @@ public class SendService {
             sendToUser(id, order.getMsg());
         });
 
-        reportService.addMessageToReport(currentSendCount + "/" + ids.size() + " is successfully sent");
+        reportService.addMessageToReport(currentSendCount + "/" + order.getNames().length +
+                " is successfully sent");
 
         reportService.finalReport();
 
@@ -52,7 +53,7 @@ public class SendService {
                     } catch (ClientException | ApiException e) {
                         e.printStackTrace();
                         reportService.addMessageToReport(
-                                "Error to convert name: " + name + " Details: " + e.getMessage());
+                                "ERROR WITH NAME CONVERING: " + name + " Details: " + e.getMessage());
                         return null;
                     }
                 })
@@ -69,7 +70,7 @@ public class SendService {
                     .execute();
             currentSendCount++;
         } catch (ClientException | ApiException e) {
-            reportService.addMessageToReport("troubles with: " + id + ". Details: " + e.getMessage());
+            reportService.addMessageToReport("SEND TROUBLES: " + id + ". Details: " + e.getMessage());
             e.printStackTrace();
         }
     }
