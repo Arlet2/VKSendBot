@@ -7,6 +7,7 @@ import auth.AuthDataReader;
 import order.Order;
 import order.OrderParser;
 import utils.FileViewer;
+import utils.NotFoundByRegexException;
 
 
 import java.io.FileNotFoundException;
@@ -108,6 +109,9 @@ public class Application {
                     } catch (IOException e) {
                         System.out.println("File " + input[1] + " is not found");
                         e.printStackTrace();
+                        break;
+                    } catch (NotFoundByRegexException e) {
+                        System.out.println("The file is incorrect. Please, read documentation and see examples.");
                         break;
                     }
                     System.out.println("ORDER MESSAGE:");
