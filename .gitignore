@@ -1,5 +1,5 @@
 auth.json
-orders/send.order
+orders
 *.report
 target/
 .idea
