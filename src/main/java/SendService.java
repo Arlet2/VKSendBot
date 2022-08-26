@@ -6,8 +6,10 @@ import order.Order;
 import utils.ReportService;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class SendService {
     private final VkApiClient api;
@@ -29,32 +31,31 @@ public class SendService {
 
         reportService.createNewReport();
 
-        Integer[] ids = convertNamesToIds(order.getNames());
+        List<Integer> ids = convertNamesToIds(order.getNames());
 
-        Arrays.stream(ids).parallel().forEach((id) -> {
+        ids.stream().parallel().forEach((id) -> {
             sendToUser(id, order.getMsg());
         });
 
-        reportService.addMessageToReport(currentSendCount + "/" + ids.length + " is successfully sent");
+        reportService.addMessageToReport(currentSendCount + "/" + ids.size() + " is successfully sent");
 
         reportService.finalReport();
     }
 
-    private Integer[] convertNamesToIds(String[] names) {
-        return (Integer[])
-                Arrays.stream(names)
-                        .map((name) -> {
-                            try {
-                                return nameConvertor.convertNameToId(name);
-                            } catch (ClientException | ApiException e) {
-                                e.printStackTrace();
-                                reportService.addMessageToReport(
-                                        "Error to convert name: " + name + " Details: " + e.getMessage());
-                                return null;
-                            }
-                        })
-                        .filter(Objects::nonNull)
-                        .toArray();
+    private List<Integer> convertNamesToIds(String[] names) {
+        return Arrays.stream(names)
+                .map((name) -> {
+                    try {
+                        return nameConvertor.convertNameToId(name);
+                    } catch (ClientException | ApiException e) {
+                        e.printStackTrace();
+                        reportService.addMessageToReport(
+                                "Error to convert name: " + name + " Details: " + e.getMessage());
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     private void sendToUser(int id, String msg) {
