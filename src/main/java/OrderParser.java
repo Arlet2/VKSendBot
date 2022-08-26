@@ -4,7 +4,7 @@ import java.io.FileReader;
 
 public class OrderParser {
 
-    private final static String MESSAGE_REGEX = "(?<=message: \\\")[\\w\\W]*(?=\\\")";
+    private final static String MESSAGE_REGEX = "(?<=message:\\s{0,10}\\n\\\")[\\w\\W]*(?=\\\")";
     private final static String IDS_REGEX = "(?<=names:\\n)[\\w\\W]*";
 
     private OrderParser() {
