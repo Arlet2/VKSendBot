@@ -1,3 +1,5 @@
+package auth;
+
 public class AuthData {
     private final String token;
     private final String secretKey;

@@ -3,6 +3,7 @@ import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import order.Order;
+import utils.ReportService;
 
 import java.util.Arrays;
 import java.util.Objects;
