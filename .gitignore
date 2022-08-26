@@ -3,3 +3,4 @@ orders
 *.report
 target/
 .idea
+*.jar
