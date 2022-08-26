@@ -2,11 +2,8 @@ package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.FormatStyle;
 
 public class ReportService {
     private final String FILE_NAME = "report";
@@ -28,7 +25,7 @@ public class ReportService {
                             .appendPattern("H-m-s")
                             .toFormatter());
 
-            FileWriter writer = new FileWriter(FILE_NAME+"_"+time+".report");
+            FileWriter writer = new FileWriter(FILE_NAME + "_" + time + ".report");
 
             writer.write(stringBuffer.toString());
             writer.flush();
