@@ -67,7 +67,7 @@ public class SendService {
                     .execute();
             currentSendCount++;
         } catch (ClientException | ApiException e) {
-            reportService.addMessageToReport("troubles with: " + id + ". Details:" + e.getMessage());
+            reportService.addMessageToReport("troubles with: " + id + ". Details: " + e.getMessage());
             e.printStackTrace();
         }
     }
