@@ -2,7 +2,11 @@ package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
 
 public class ReportService {
     private final String FILE_NAME = "report";
@@ -19,13 +23,19 @@ public class ReportService {
 
     public void finalReport() {
         try {
-            FileWriter writer = new FileWriter(FILE_NAME+"-"+LocalTime.now().toString());
+            String time = LocalTime.now().format(
+                    new DateTimeFormatterBuilder()
+                            .appendPattern("H-m-s")
+                            .toFormatter());
+
+            FileWriter writer = new FileWriter(FILE_NAME+"_"+time+".report");
 
             writer.write(stringBuffer.toString());
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("ERROR WITH REPORT SAVING");
+            System.out.println("ERROR WITH REPORT SAVING. REPORT WILL BE PRINT HERE");
+            System.out.println(stringBuffer.toString());
         }
     }
 }
