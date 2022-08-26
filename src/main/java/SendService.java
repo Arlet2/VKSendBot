@@ -51,7 +51,6 @@ public class SendService {
                     try {
                         return nameConvertorService.convertNameToId(name);
                     } catch (ClientException | ApiException e) {
-                        e.printStackTrace();
                         reportService.addMessageToReport(
                                 "ERROR WITH NAME CONVERTING: " + name + " Details: " + e.getMessage());
                         return null;
@@ -70,8 +69,7 @@ public class SendService {
                     .execute();
             currentSendCount++;
         } catch (ClientException | ApiException e) {
-            reportService.addMessageToReport("SEND TROUBLES: " + id + ". Details: " + e.getMessage());
-            e.printStackTrace();
+            reportService.addMessageToReport("TROUBLES WITH SENDING: " + id + ". Details: " + e.getMessage());
         }
     }
 }
