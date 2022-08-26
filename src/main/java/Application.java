@@ -62,6 +62,11 @@ public class Application {
 
         boolean isInterrupted = false;
 
+        System.out.println("Welcome to SendBot v. "+
+                Application.class.getPackage().getImplementationVersion()+" (by Arlet)!");
+        System.out.println("https://github.com/Arlet2/VKSendBot for guide for this application");
+        System.out.println("\nUse help to see all commands");
+
         while (!isInterrupted) {
             System.out.print("$ ");
 
