@@ -22,7 +22,7 @@ public class ReportService {
         try {
             String time = LocalTime.now().format(
                     new DateTimeFormatterBuilder()
-                            .appendPattern("H-m-s")
+                            .appendPattern("H_m_s")
                             .toFormatter());
 
             FileWriter writer = new FileWriter(FILE_NAME + "_" + time + ".report");
