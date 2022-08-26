@@ -10,7 +10,7 @@ public class RegexSearcher {
     }
 
     public static String searchFirst(String regex, String input) throws NotFoundByRegexException {
-        Matcher matcher = Pattern.compile(regex).matcher(input);
+        Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(input);
         matcher.find();
         try {
             return input.substring(matcher.start(), matcher.end());
