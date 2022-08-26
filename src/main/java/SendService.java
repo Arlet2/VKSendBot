@@ -40,6 +40,8 @@ public class SendService {
         reportService.addMessageToReport(currentSendCount + "/" + ids.size() + " is successfully sent");
 
         reportService.finalReport();
+
+        System.out.println("Report is ready!");
     }
 
     private List<Integer> convertNamesToIds(String[] names) {
