@@ -29,6 +29,7 @@ public class ReportService {
 
             writer.write(stringBuffer.toString());
             writer.flush();
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("ERROR WITH REPORT SAVING. REPORT WILL BE PRINT HERE");
