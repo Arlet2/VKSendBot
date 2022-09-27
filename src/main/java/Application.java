@@ -125,8 +125,12 @@ public class Application {
                     System.out.println("Are you sure to continue? (y/n)");
                     input[0] = scanner.nextLine();
 
-                    if (input[0].equals("y") || input[0].equals("yes"))
+                    if (input[0].equals("y") || input[0].equals("yes")) {
+                        long startTime = System.currentTimeMillis();
                         sendService.executeSendOrder(order);
+                        long endTime = System.currentTimeMillis();
+                        System.out.println("Executed for "+ (endTime - startTime) + " ms");
+                    }
                     else
                         System.out.println("Order is declined");
 
