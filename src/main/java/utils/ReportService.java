@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 
 public class ReportService {
-    private final String FILE_NAME = "report";
+    private final static String FILE_NAME = "report";
 
     private StringBuffer stringBuffer;
 
