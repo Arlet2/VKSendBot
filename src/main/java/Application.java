@@ -81,7 +81,7 @@ public class Application {
                 case "help":
                     System.out.println("help - view this text");
                     System.out.println("exit - exit from application");
-                    System.out.println("execute fileName - execute .order file");
+                    System.out.println("execute fileName - execute .order file (also run, r, exe)");
                     System.out.println("view dirName - view all .order files on directory");
                     break;
                 case "view":
@@ -102,6 +102,9 @@ public class Application {
                         System.out.println("No any files.");
 
                     break;
+                case "run":
+                case "r":
+                case "exe":
                 case "execute":
                     Order order;
                     try {
