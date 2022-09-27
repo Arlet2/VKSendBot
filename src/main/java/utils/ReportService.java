@@ -2,7 +2,7 @@ package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 
 public class ReportService {
@@ -20,9 +20,9 @@ public class ReportService {
 
     public void finalReport() {
         try {
-            String time = LocalTime.now().format(
+            String time = LocalDateTime.now().format(
                     new DateTimeFormatterBuilder()
-                            .appendPattern("H_m_s")
+                            .appendPattern("dd.MM.yy_(HH.mm)")
                             .toFormatter());
 
             FileWriter writer = new FileWriter(FILE_NAME + "_" + time + ".report");
