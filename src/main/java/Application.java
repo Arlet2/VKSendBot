@@ -74,13 +74,15 @@ public class Application {
             input = scanner.nextLine().split(" ");
 
             switch (input[0]) {
+                case "q":
+                case "quit":
                 case "exit":
                     isInterrupted = true;
                     System.out.println("Exiting...");
                     break;
                 case "help":
                     System.out.println("help - view this text");
-                    System.out.println("exit - exit from application");
+                    System.out.println("exit - exit from application (also exit, quit, q)");
                     System.out.println("execute fileName - execute .order file (also run, r, exe)");
                     System.out.println("view dirName - view all .order files on directory");
                     break;
