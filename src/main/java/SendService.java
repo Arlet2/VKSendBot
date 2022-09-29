@@ -33,7 +33,7 @@ public class SendService {
 
         List<Integer> ids = convertNamesToIds(order.getNames());
 
-        ids.stream().parallel().forEach((id) -> {
+        ids.parallelStream().forEach((id) -> {
             sendToUser(id, order.getMsg());
         });
 
