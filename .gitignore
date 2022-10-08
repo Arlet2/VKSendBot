@@ -1,6 +1,6 @@
 auth.json
-orders
+/orders/
 *.report
 target/
-.idea
+/.idea/
 *.jar
