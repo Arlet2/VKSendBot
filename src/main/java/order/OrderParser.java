@@ -27,7 +27,7 @@ public class OrderParser {
     }
 
     private static String getContentFromFile(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8));
+        BufferedReader reader = new BufferedReader(new FileReader(path));
 
         StringBuilder stringBuilder = new StringBuilder();
 
