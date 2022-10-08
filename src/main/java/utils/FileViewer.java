@@ -11,7 +11,7 @@ public class FileViewer {
     public static List<String> getAllFilesFromDir(String dirName) {
         File dir = new File(dirName);
 
-        if (Optional.ofNullable(dir.listFiles()).isEmpty())
+        if (!Optional.ofNullable(dir.listFiles()).isPresent())
             return null;
 
         return Arrays.stream(dir.listFiles())
