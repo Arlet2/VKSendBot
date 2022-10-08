@@ -1,11 +1,12 @@
 package order;
 
+import utils.LinkCutter;
 import utils.RegexSearcher;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class OrderParser {
 
@@ -21,9 +22,13 @@ public class OrderParser {
 
         String msg = RegexSearcher.searchFirst(MESSAGE_REGEX, orderContent);
 
-        String names = RegexSearcher.searchFirst(IDS_REGEX, orderContent);
+        String[] names = RegexSearcher.searchFirst(IDS_REGEX, orderContent).split("\n");
 
-        return new Order(msg, names.split("\n"));
+        Arrays.stream(names)
+                .parallel()
+                .forEach((name) -> name = LinkCutter.cutLinks(name));
+
+        return new Order(msg, names);
     }
 
     private static String getContentFromFile(String path) throws IOException {
