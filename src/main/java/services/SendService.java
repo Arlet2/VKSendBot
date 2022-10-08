@@ -1,3 +1,5 @@
+package services;
+
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.exceptions.ApiException;
@@ -19,7 +21,7 @@ public class SendService {
 
     private int currentSendCount = 0;
 
-    SendService(VkApiClient api, GroupActor groupActor, NameConvertorService nameConvertorService) {
+    public SendService(VkApiClient api, GroupActor groupActor, NameConvertorService nameConvertorService) {
         this.api = api;
         this.groupActor = groupActor;
         this.nameConvertorService = nameConvertorService;

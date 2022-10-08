@@ -1,3 +1,5 @@
+package services;
+
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.exceptions.ApiException;
@@ -8,7 +10,7 @@ public class NameConvertorService {
     private final VkApiClient api;
     private final GroupActor groupActor;
 
-    NameConvertorService(VkApiClient api, GroupActor groupActor) {
+    public NameConvertorService(VkApiClient api, GroupActor groupActor) {
         this.api = api;
         this.groupActor = groupActor;
     }
