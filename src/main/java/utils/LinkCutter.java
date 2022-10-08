@@ -19,7 +19,7 @@ public class LinkCutter {
     }
 
     private static String cutMobileFullLink(String link) {
-        return link.replace("https://m.vk.com/", "");
+        return link.replace("https://m.vk.com/", "").replace("http://m.vk.com", "");
     }
 
     private static String cutMobileShortLink(String link) {
@@ -27,7 +27,7 @@ public class LinkCutter {
     }
 
     private static String cutFullLink(String link) {
-        return link.replace("https://vk.com/", "");
+        return link.replace("https://vk.com/", "").replace("http://vk.com/", "");
     }
 
     private static String cutShortLink(String link) {
