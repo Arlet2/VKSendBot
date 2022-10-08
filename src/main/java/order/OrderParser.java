@@ -24,9 +24,10 @@ public class OrderParser {
 
         String[] names = RegexSearcher.searchFirst(IDS_REGEX, orderContent).split("\n");
 
-        Arrays.stream(names)
+        names = Arrays.stream(names)
                 .parallel()
-                .forEach((name) -> name = LinkCutter.cutLinks(name));
+                .map(LinkCutter::cutLinks)
+                .toArray(String[]::new);
 
         return new Order(msg, names);
     }
