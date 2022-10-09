@@ -14,18 +14,15 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class SendService {
-    private final VkApiClient api;
-    private final GroupActor groupActor;
-    private final ReportService reportService;
-    private final NameConvertorService nameConvertorService;
+    private VkApiClient api;
+    private GroupActor groupActor;
+    private final ReportService reportService = new ReportService();
+    private NameConvertorService nameConvertorService;
 
     private int currentSendCount = 0;
 
-    public SendService(VkApiClient api, GroupActor groupActor, NameConvertorService nameConvertorService) {
-        this.api = api;
-        this.groupActor = groupActor;
-        this.nameConvertorService = nameConvertorService;
-        this.reportService = new ReportService();
+    public SendService() {
+
     }
 
     public void executeSendOrder(Order order) {
@@ -73,5 +70,12 @@ public class SendService {
         } catch (ClientException | ApiException e) {
             reportService.addMessageToReport("TROUBLES WITH SENDING: " + id + ". Details: " + e.getMessage());
         }
+    }
+
+    public void changeApi(VkApiClient api, GroupActor groupActor) {
+        this.api = api;
+        this.groupActor = groupActor;
+
+        nameConvertorService = new NameConvertorService(api, groupActor);
     }
 }
