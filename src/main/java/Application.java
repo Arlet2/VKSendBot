@@ -3,6 +3,7 @@ import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import services.SendService;
 import ui.ConsoleUI;
+import ui.GraphicalUI;
 import ui.UI;
 
 public class Application {
@@ -16,7 +17,7 @@ public class Application {
 
         initServices();
 
-        UI ui = new ConsoleUI(sendService);
+        UI ui = new GraphicalUI(sendService);//new ConsoleUI(sendService);
 
         ui.startInteraction();
     }
