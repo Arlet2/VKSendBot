@@ -1,5 +1,7 @@
 package utils;
 
+import utils.exceptions.SerializerException;
+
 import java.io.*;
 
 public class Serializer {

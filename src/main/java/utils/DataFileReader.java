@@ -3,8 +3,8 @@ package utils;
 import auth.AuthData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import utils.exceptions.FileReadingException;
 
-import javax.crypto.Cipher;
 import java.io.*;
 import java.io.FileReader;
 import java.util.Optional;
