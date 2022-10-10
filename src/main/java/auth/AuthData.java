@@ -1,6 +1,8 @@
 package auth;
 
-public class AuthData {
+import java.io.Serializable;
+
+public class AuthData implements Serializable {
     private final String token;
     private final int groupId;
 
