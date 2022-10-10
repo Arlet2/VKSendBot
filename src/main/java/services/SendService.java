@@ -14,15 +14,16 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class SendService {
-    private VkApiClient api;
+    private final VkApiClient api;
     private GroupActor groupActor;
     private final ReportService reportService = new ReportService();
-    private NameConvertorService nameConvertorService;
+    private final NameConvertorService nameConvertorService;
 
     private int currentSendCount = 0;
 
-    public SendService() {
-
+    public SendService(VkApiClient api) {
+        this.api = api;
+        nameConvertorService = new NameConvertorService(api);
     }
 
     public void executeSendOrder(Order order) {
@@ -72,10 +73,9 @@ public class SendService {
         }
     }
 
-    public void changeApi(VkApiClient api, GroupActor groupActor) {
-        this.api = api;
+    public void changeGroupActor(GroupActor groupActor) {
         this.groupActor = groupActor;
 
-        nameConvertorService = new NameConvertorService(api, groupActor);
+        nameConvertorService.changeGroupActor(groupActor);
     }
 }
