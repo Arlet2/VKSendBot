@@ -33,9 +33,10 @@ public class SendService {
 
         List<Integer> ids = convertNamesToIds(order.getNames());
 
-        ids.parallelStream().forEach((id) -> {
-            sendToUser(id, order.getMsg());
-        });
+        ids.parallelStream()
+                .forEach(
+                        (id) -> sendToUser(id, order.getMsg())
+                );
 
         reportService.addMessageToReport(currentSendCount + "/" + order.getNames().length +
                 " is successfully sent");
