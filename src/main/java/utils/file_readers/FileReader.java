@@ -1,7 +1,7 @@
-package utils;
+package utils.file_readers;
 
 import java.io.FileNotFoundException;
 
 public interface FileReader<T> {
-    T read() throws FileNotFoundException;
+    T read(String path) throws FileNotFoundException;
 }
