@@ -1,17 +1,13 @@
-package utils;
+package utils.files.file_readers;
 
 import utils.exceptions.FileReadingException;
-import utils.files.file_readers.FileReader;
 
 import java.io.*;
 import java.util.Optional;
 
 public class DataFileReader {
-    private DataFileReader() {
 
-    }
-
-    public static <T> Optional<T> readFile(FileReader<T> reader, String path) {
+    public <T> Optional<T> readFile(FileReader<T> reader, String path) {
         T data;
         try {
             data = reader.read(path);
