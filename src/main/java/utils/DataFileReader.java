@@ -1,7 +1,7 @@
 package utils;
 
 import utils.exceptions.FileReadingException;
-import utils.file_readers.FileReader;
+import utils.files.file_readers.FileReader;
 
 import java.io.*;
 import java.util.Optional;
