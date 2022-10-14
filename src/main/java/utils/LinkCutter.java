@@ -11,7 +11,7 @@ public class LinkCutter {
         link = cutFullLink(link);
         link = cutShortLink(link);
         link = clearSpaces(link);
-        return link;
+        return link.toLowerCase();
     }
 
     private static String clearSpaces(String link) {
