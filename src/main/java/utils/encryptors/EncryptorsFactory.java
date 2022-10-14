@@ -24,7 +24,7 @@ public class EncryptorsFactory {
                     getPredicateForFilter(encryptionProtocol));
 
             if (!isUniqueProtocol(stream)) {
-                System.out.println("This protocol number is using for more than one encryptors..\n" +
+                System.out.println("This protocol number is using for more than one encryptors or does not exist..\n" +
                         "Default encryptor was loaded");
                 return getDefaultEncryptor();
             }
