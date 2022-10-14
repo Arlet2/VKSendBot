@@ -83,7 +83,7 @@ public class EncryptorsFactory {
         } catch (InstantiationException | IllegalAccessException |
                 InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
-            return new NullEncryptor();
+            return null;
         }
     }
 }
