@@ -12,11 +12,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-public class EncryptedFileReader implements FileReader<Object> {
-    private final EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
+public class EncryptedFileReader {
+    private static final EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
 
-    @Override
-    public Object read(String path) throws FileNotFoundException {
+    public static Object read(String path) throws FileNotFoundException {
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(path));
             ByteObject byteObject = (ByteObject) objectInputStream.readObject();
