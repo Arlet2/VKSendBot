@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class FileViewer {
 
-    public static List<String> getAllFilesFromDir(String dirName) {
+    public List<String> getAllFilesFromDir(String dirName) {
         File dir = new File(dirName);
 
         if (!Optional.ofNullable(dir.listFiles()).isPresent())

@@ -6,16 +6,12 @@ import java.io.*;
 
 public class Serializer {
 
-    private Serializer() {
-
-    }
-
-    public static Object convertBytesToObject(byte[] bytes) {
+    public Object convertBytesToObject(byte[] bytes) {
         ByteArrayInputStream byteStream = new ByteArrayInputStream(bytes);
         return convertStreamToObject(byteStream);
     }
 
-    public static Object convertStreamToObject(InputStream stream) {
+    public Object convertStreamToObject(InputStream stream) {
         try {
             ObjectInputStream objStream = new ObjectInputStream(stream);
             return objStream.readObject();
@@ -28,13 +24,13 @@ public class Serializer {
         }
     }
 
-    public static byte[] convertObjectToBytes(Object object) {
+    public byte[] convertObjectToBytes(Object object) {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         pushObjectToStream(object, byteStream);
         return byteStream.toByteArray();
     }
 
-    public static void pushObjectToStream(Object object, OutputStream outputStream) {
+    public void pushObjectToStream(Object object, OutputStream outputStream) {
         try {
             ObjectOutputStream objStream = new ObjectOutputStream(outputStream);
 

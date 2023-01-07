@@ -6,11 +6,12 @@
 
     <groupId>com.arlet</groupId>
     <artifactId>VKSendBot</artifactId>
-    <version>1.2.0-TEST-SNAPSHOT</version>
+    <version>1.1.0-TEST-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <mainClassName>Application</mainClassName>
     </properties>
 
     <dependencies>
@@ -49,9 +50,11 @@
                 <configuration>
                     <outputFile>${project.artifactId}-${project.version}.jar</outputFile>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <mainClass>Application</mainClass>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>${mainClassName}</mainClass>
                             <manifestEntries>
                                 <implementation-version>${project.version}</implementation-version>
                             </manifestEntries>

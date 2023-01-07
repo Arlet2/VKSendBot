@@ -7,8 +7,8 @@ import com.google.gson.GsonBuilder;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class AuthJsonReader{
-    public static AuthData read(String path) throws FileNotFoundException {
+public class AuthJsonReader implements FileReader<AuthData> {
+    public AuthData read(String path) throws FileNotFoundException {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 

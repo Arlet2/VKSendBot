@@ -13,26 +13,25 @@ public class OrderParser {
     private final static String MESSAGE_REGEX = "(?<=message:\\s{0,10}\\n\\\")[\\w\\W]*(?=\\\")";
     private final static String IDS_REGEX = "(?<=names:\\n)[\\w\\W]*";
 
-    private OrderParser() {
+    private final RegexSearcher regexSearcher = new RegexSearcher();
+    private final LinkCutter linkCutter = new LinkCutter();
 
-    }
-
-    public static Order parseOrder(String path) throws IOException {
+    public Order parseOrder(String path) throws IOException {
         String orderContent = getContentFromFile(path);
 
-        String msg = RegexSearcher.searchFirst(MESSAGE_REGEX, orderContent);
+        String msg = regexSearcher.searchFirst(MESSAGE_REGEX, orderContent);
 
-        String[] names = RegexSearcher.searchFirst(IDS_REGEX, orderContent).split("\n");
+        String[] names = regexSearcher.searchFirst(IDS_REGEX, orderContent).split("\n");
 
         names = Arrays.stream(names)
                 .parallel()
-                .map(LinkCutter::cutLinks)
+                .map(linkCutter::cutLinks)
                 .toArray(String[]::new);
 
         return new Order(msg, names);
     }
 
-    private static String getContentFromFile(String path) throws IOException {
+    private String getContentFromFile(String path) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(path));
 
         StringBuilder stringBuilder = new StringBuilder();

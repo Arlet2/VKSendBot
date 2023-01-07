@@ -14,6 +14,7 @@ public class AuthService {
 
     private final Map<String, AuthData> profiles;
     private final DataFileReader reader = new DataFileReader();
+    private final EncryptedFileReader encryptedFileReader = new EncryptedFileReader();
 
     AuthService() {
         profiles = new HashMap<>();
@@ -22,11 +23,11 @@ public class AuthService {
 
     private Optional<Map<String, AuthData>> readEncryptedAuth() {
         return reader.readFile(
-                (path) -> (Map<String, AuthData>) EncryptedFileReader.read(path),
+                (path) -> (Map<String, AuthData>) encryptedFileReader.read(path),
                 "profiles.exc");
     }
 
     private Optional<AuthData> readAuthJson() {
-        return reader.readFile(AuthJsonReader::read, "auth.json");
+        return reader.readFile((path) -> new AuthJsonReader().read(path), "auth.json");
     }
 }

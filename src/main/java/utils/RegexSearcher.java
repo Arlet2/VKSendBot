@@ -7,11 +7,8 @@ import java.util.regex.Pattern;
 
 public class RegexSearcher {
 
-    private RegexSearcher() {
 
-    }
-
-    public static String searchFirst(String regex, String input) throws NotFoundByRegexException {
+    public String searchFirst(String regex, String input) throws NotFoundByRegexException {
         Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(input);
         matcher.find();
         try {
@@ -21,7 +18,7 @@ public class RegexSearcher {
         }
     }
 
-    public static int searchFoundsCount(String regex, String input) {
+    public int searchFoundsCount(String regex, String input) {
         Matcher matcher = Pattern.compile(regex).matcher(input);
         int counter = 0;
         while (matcher.find()) counter++;

@@ -11,16 +11,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class EncryptedFileReader {
-    private static final EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
+    private final EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
+    private final Serializer serializer = new Serializer();
 
-    public static Object read(String path) throws FileNotFoundException {
+    public Object read(String path) throws FileNotFoundException {
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(path));
+            ObjectInputStream objectInputStream = new ObjectInputStream(Files.newInputStream(Paths.get(path)));
             ByteObject byteObject = (ByteObject) objectInputStream.readObject();
 
-            return Serializer.convertBytesToObject(encryptor.decrypt(byteObject.getBytes()));
+            return serializer.convertBytesToObject(encryptor.decrypt(byteObject.getBytes()));
         } catch (IOException e) {
             throw new FileReadingException("Cannot open " + path);
         } catch (ClassNotFoundException e) {

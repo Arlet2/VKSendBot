@@ -8,6 +8,7 @@ import org.junit.Test;
 import utils.Serializer;
 
 public class EncryptorsTest {
+    private final Serializer serializer = new Serializer();
 
     private boolean checkProtocol(int expected, int usageProtocol) {
         return expected == usageProtocol;
@@ -19,7 +20,7 @@ public class EncryptorsTest {
         String input = "Hello, world!";
 
         String result = (String)
-                Serializer.convertBytesToObject(encryptor.encrypt(Serializer.convertObjectToBytes(input)));
+                serializer.convertBytesToObject(encryptor.encrypt(serializer.convertObjectToBytes(input)));
 
         Assert.assertEquals(input, result);
     }
@@ -44,8 +45,8 @@ public class EncryptorsTest {
         String input = "Hello, world!";
 
         String result = (String)
-                Serializer.convertBytesToObject(
-                        encryptor.decrypt(encryptor.encrypt(Serializer.convertObjectToBytes(input)))
+                serializer.convertBytesToObject(
+                        encryptor.decrypt(encryptor.encrypt(serializer.convertObjectToBytes(input)))
                 );
 
         Assert.assertEquals(input, result);
@@ -56,9 +57,9 @@ public class EncryptorsTest {
         EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
         String input = "Hello, world!";
 
-        byte[] result = encryptor.encrypt(Serializer.convertObjectToBytes(input));
+        byte[] result = encryptor.encrypt(serializer.convertObjectToBytes(input));
 
-        Assert.assertNotEquals(Serializer.convertObjectToBytes(input), result);
+        Assert.assertNotEquals(serializer.convertObjectToBytes(input), result);
     }
 
     @Test
@@ -66,8 +67,8 @@ public class EncryptorsTest {
         EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
         String input = "Hello, encryptor!";
 
-        String result = (String) Serializer.convertBytesToObject(
-                encryptor.decrypt(encryptor.encrypt(Serializer.convertObjectToBytes(input))));
+        String result = (String) serializer.convertBytesToObject(
+                encryptor.decrypt(encryptor.encrypt(serializer.convertObjectToBytes(input))));
 
         Assert.assertEquals(input, result);
     }

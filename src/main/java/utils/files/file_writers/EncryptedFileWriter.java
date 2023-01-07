@@ -11,16 +11,19 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class EncryptedFileWriter implements FileWriter {
     private final EncryptorService encryptor = EncryptorsFactory.getEncryptor(SimpleEncryptor.ENCRYPTION_PROTOCOL);
+    private final Serializer serializer = new Serializer();
 
     public void write(Object object, String path) throws FileNotFoundException {
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(path));
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(Files.newOutputStream(Paths.get(path)));
 
             ByteObject byteObject = new ByteObject(
-                    encryptor.encrypt(Serializer.convertObjectToBytes(object))
+                    encryptor.encrypt(serializer.convertObjectToBytes(object))
             );
 
             objectOutputStream.writeObject(byteObject);

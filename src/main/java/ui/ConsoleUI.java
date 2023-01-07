@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 public class ConsoleUI extends UI {
     private boolean isProgramInterrupted;
+    private final FileViewer fileViewer = new FileViewer();
+    private final OrderParser orderParser = new OrderParser();
 
     public ConsoleUI(SendService sendService) {
         super(sendService);
@@ -75,16 +77,16 @@ public class ConsoleUI extends UI {
     private void viewCommand(String[] input) {
         List<String> fileNames;
         if (input.length == 1)
-            fileNames = FileViewer.getAllFilesFromDir("");
+            fileNames = fileViewer.getAllFilesFromDir("");
         else
-            fileNames = FileViewer.getAllFilesFromDir(input[1]);
+            fileNames = fileViewer.getAllFilesFromDir(input[1]);
 
         if (input.length == 1)
             System.out.println("Files .order on this directory...");
         else
             System.out.println("Files .order on " + input[1] + "...");
 
-        if (Optional.ofNullable(fileNames).isPresent())
+        if (fileNames != null)
             fileNames.forEach(System.out::println);
         else
             System.out.println("No any files.");
@@ -94,7 +96,7 @@ public class ConsoleUI extends UI {
     private void executeCommand(Scanner scanner, String[] input) {
         Order order;
         try {
-            order = OrderParser.parseOrder(input[1]);
+            order = orderParser.parseOrder(input[1]);
         } catch (IOException e) {
             System.out.println("File " + input[1] + " is not found");
             e.printStackTrace();
