@@ -6,7 +6,7 @@
 
     <groupId>com.arlet</groupId>
     <artifactId>VKSendBot</artifactId>
-    <version>1.1.0-final</version>
+    <version>1.2.0-final</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -23,13 +23,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>ai.h2o</groupId>
+            <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.9.11-h2o-custom</version>
+            <version>0.10.2</version>
         </dependency>
     </dependencies>
 
