@@ -40,7 +40,7 @@ public class Application {
             AuthData authData = new AuthJsonReader().read("auth.json");
             sendService.changeGroupActor(authData.getGroupId(), authData.getToken());
         } catch (FileNotFoundException e) {
-            System.out.println("Файл auth.json не был найден! Добавьте группу для использования ботов");
+            System.out.println("Файл auth.json не был найден! Добавьте группу для использования бота");
         }
     }
 
