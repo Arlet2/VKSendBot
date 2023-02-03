@@ -9,7 +9,7 @@ public class ViewCommand extends Command {
     private final FileViewer fileViewer = new FileViewer();
 
     public ViewCommand() {
-        super("view", "dirName показать все .order файлы в директории");
+        super("view", "показать все .order файлы в директории (аргументы dirName)");
     }
 
     @Override
