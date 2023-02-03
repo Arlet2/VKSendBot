@@ -22,7 +22,6 @@ public class RunCommand extends Command {
             order = orderParser.parseOrder(args[1]);
         } catch (IOException e) {
             System.out.println("Файл " + args[1] + " не найден");
-            e.printStackTrace();
             return;
         } catch (NotFoundByRegexException e) {
             System.out.println("Файл составлен некорректно. Пожалуйста, прочитайте документацию и примеры составления.");
