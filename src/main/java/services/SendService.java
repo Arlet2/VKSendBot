@@ -40,11 +40,11 @@ public class SendService {
                 );
 
         reportService.addMessageToReport(currentSendCount + "/" + order.getNames().length +
-                " is successfully sent");
+                " успешно отправлены");
 
         reportService.finalReport();
 
-        System.out.println("Report is ready!");
+        System.out.println("Отчёт готов!");
     }
 
     private List<Integer> convertNamesToIds(String[] names) {
@@ -54,7 +54,7 @@ public class SendService {
                         return nameConvertorService.convertNameToId(name);
                     } catch (ClientException | ApiException e) {
                         reportService.addMessageToReport(
-                                "ERROR WITH NAME CONVERTING: " + name + " Details: " + e.getMessage());
+                                "Ошибка с конвертацией имени: " + name + " Детали: " + e.getMessage());
                         return null;
                     }
                 })
@@ -71,7 +71,7 @@ public class SendService {
                     .execute();
             currentSendCount++;
         } catch (ClientException | ApiException e) {
-            reportService.addMessageToReport("TROUBLES WITH SENDING: " + id + ". Details: " + e.getMessage());
+            reportService.addMessageToReport("Проблемы с отправкой к : " + id + ". Детали: " + e.getMessage());
         }
     }
 
