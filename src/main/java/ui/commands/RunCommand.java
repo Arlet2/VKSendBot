@@ -12,11 +12,21 @@ public class RunCommand extends Command {
     private final OrderParser orderParser = new OrderParser();
 
     public RunCommand() {
-        super("run", "исполнить .order файл", new String[]{"r", "execute", "exe"});
+        super("run", "исполнить .order файл (path)", new String[]{"r", "execute", "exe"});
     }
 
     @Override
     public void execute(UI.Context context, String[] args) {
+        if (args.length < 2) {
+            System.out.println("Недостаточно аргументов. Введите путь до .order файла");
+            return;
+        }
+
+        if (context.getSendService().getGroupActor() == null) {
+            System.out.println("Данные группы не найдены. Используйте команду change_group для ввода");
+            return;
+        }
+
         Order order;
         try {
             order = orderParser.parseOrder(args[1]);
