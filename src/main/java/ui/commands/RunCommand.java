@@ -27,6 +27,7 @@ public class RunCommand extends Command {
             System.out.println("Файл составлен некорректно. Пожалуйста, прочитайте документацию и примеры составления.");
             return;
         }
+        System.out.println("Id группы для отправки приказа: " + context.getSendService().getGroupActor().getGroupId());
         System.out.println("Сообщение приказа:");
         System.out.println(order.getMsg());
 
