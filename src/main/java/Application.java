@@ -5,7 +5,7 @@ import com.vk.api.sdk.httpclient.HttpTransportClient;
 import services.SendService;
 import ui.console.ConsoleUI;
 import ui.UI;
-import utils.files.file_readers.AuthJsonReader;
+import utils.file_readers.AuthJsonReader;
 
 import java.io.FileNotFoundException;
 
