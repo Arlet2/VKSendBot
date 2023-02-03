@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class SendService {
     private final VkApiClient api;
-    private GroupActor groupActor;
+    private GroupActor groupActor = null;
     private final ReportService reportService = new ReportService();
     private final NameConvertorService nameConvertorService;
 
@@ -75,9 +75,8 @@ public class SendService {
         }
     }
 
-    public void changeGroupActor(GroupActor groupActor) {
-        this.groupActor = groupActor;
-
+    public void changeGroupActor(int groupId, String token) {
+        groupActor = new GroupActor(groupId, token);
         nameConvertorService.changeGroupActor(groupActor);
     }
 }

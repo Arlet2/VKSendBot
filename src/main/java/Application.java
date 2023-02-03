@@ -1,10 +1,9 @@
 import auth.AuthData;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
-import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import services.SendService;
-import ui.ConsoleUI;
+import ui.console.ConsoleUI;
 import ui.UI;
 import utils.files.file_readers.AuthJsonReader;
 
@@ -37,15 +36,12 @@ public class Application {
     private static void initServices() {
         sendService = new SendService(api);
 
-        AuthData authData = null;
         try {
-            authData = new AuthJsonReader().read("auth.json");
+            AuthData authData = new AuthJsonReader().read("auth.json");
+            sendService.changeGroupActor(authData.getGroupId(), authData.getToken());
         } catch (FileNotFoundException e) {
-            System.out.println("Файл auth.json не был найден!");
-            System.exit(1);
+            System.out.println("Файл auth.json не был найден! Добавьте группу для использования ботов");
         }
-
-        sendService.changeGroupActor(new GroupActor(authData.getGroupId(), authData.getToken())); // temp
     }
 
 }
