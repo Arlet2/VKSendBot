@@ -7,7 +7,6 @@ import com.vk.api.sdk.exceptions.ClientException;
 import order.Order;
 import utils.ReportService;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -78,5 +77,9 @@ public class SendService {
     public void changeGroupActor(int groupId, String token) {
         groupActor = new GroupActor(groupId, token);
         nameConvertorService.changeGroupActor(groupActor);
+    }
+
+    public GroupActor getGroupActor() {
+        return groupActor;
     }
 }
