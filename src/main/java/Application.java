@@ -1,10 +1,13 @@
+import auth.AuthData;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import services.SendService;
-import ui.ConsoleUI;
 import ui.GraphicalUI;
 import ui.UI;
+import utils.file_readers.AuthJsonReader;
+
+import java.io.FileNotFoundException;
 
 public class Application {
 
@@ -32,6 +35,13 @@ public class Application {
 
     private static void initServices() {
         sendService = new SendService(api);
+
+        try {
+            AuthData authData = new AuthJsonReader().read("auth.json");
+            sendService.changeGroupActor(authData.getGroupId(), authData.getToken());
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл auth.json не был найден! Добавьте группу для использования бота");
+        }
     }
 
 }

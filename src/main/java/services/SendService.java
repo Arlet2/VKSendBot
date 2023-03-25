@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class SendService {
     private final VkApiClient api;
-    private GroupActor groupActor;
+    private GroupActor groupActor = null;
     private final ReportService reportService = new ReportService();
     private final NameConvertorService nameConvertorService;
 
@@ -33,16 +33,17 @@ public class SendService {
 
         List<Integer> ids = convertNamesToIds(order.getNames());
 
-        ids.parallelStream().forEach((id) -> {
-            sendToUser(id, order.getMsg());
-        });
+        ids.parallelStream()
+                .forEach(
+                        (id) -> sendToUser(id, order.getMsg())
+                );
 
         reportService.addMessageToReport(currentSendCount + "/" + order.getNames().length +
-                " is successfully sent");
+                " успешно отправлены");
 
         reportService.finalReport();
 
-        System.out.println("Report is ready!");
+        System.out.println("Отчёт готов!");
     }
 
     private List<Integer> convertNamesToIds(String[] names) {
@@ -52,7 +53,7 @@ public class SendService {
                         return nameConvertorService.convertNameToId(name);
                     } catch (ClientException | ApiException e) {
                         reportService.addMessageToReport(
-                                "ERROR WITH NAME CONVERTING: " + name + " Details: " + e.getMessage());
+                                "Ошибка с конвертацией имени: " + name + " Детали: " + e.getMessage());
                         return null;
                     }
                 })
@@ -69,13 +70,16 @@ public class SendService {
                     .execute();
             currentSendCount++;
         } catch (ClientException | ApiException e) {
-            reportService.addMessageToReport("TROUBLES WITH SENDING: " + id + ". Details: " + e.getMessage());
+            reportService.addMessageToReport("Проблемы с отправкой к : " + id + ". Детали: " + e.getMessage());
         }
     }
 
-    public void changeGroupActor(GroupActor groupActor) {
-        this.groupActor = groupActor;
-
+    public void changeGroupActor(int groupId, String token) {
+        groupActor = new GroupActor(groupId, token);
         nameConvertorService.changeGroupActor(groupActor);
+    }
+
+    public GroupActor getGroupActor() {
+        return groupActor;
     }
 }

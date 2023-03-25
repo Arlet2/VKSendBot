@@ -1,22 +1,18 @@
-package auth;
+package utils.file_readers;
 
+import auth.AuthData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
-public class AuthDataReader {
-    private AuthDataReader() {
-
-    }
-
-    public static AuthData readAuthJson(String path) throws FileNotFoundException {
+public class AuthJsonReader implements FileReader<AuthData> {
+    public AuthData read(String path) throws FileNotFoundException {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 
-        FileReader reader = new FileReader(path);
+        java.io.FileReader reader = new java.io.FileReader(path);
 
         AuthData authData = gson.fromJson(reader, AuthData.class);
 
@@ -27,9 +23,5 @@ public class AuthDataReader {
         }
 
         return authData;
-    }
-
-    public static AuthData readEncryptedFile(String path) throws FileNotFoundException {
-        return null;
     }
 }

@@ -32,7 +32,7 @@ public class ReportService {
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("ERROR WITH REPORT SAVING. REPORT WILL BE PRINT HERE");
+            System.out.println("Ошибка с сохранением отчёта. Отчёт будет напечатан здесь");
             System.out.println(stringBuffer.toString());
         }
     }
