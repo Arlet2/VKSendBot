@@ -11,12 +11,12 @@ import java.util.Scanner;
 public class RunCommand extends Command {
     private final OrderParser orderParser = new OrderParser();
 
-    public RunCommand() {
-        super("run", "исполнить .order файл (path)", new String[]{"r", "execute", "exe"});
+    public RunCommand(UI.Context context) {
+        super("run", "исполнить .order файл (path)", new String[]{"r", "execute", "exe"}, context);
     }
 
     @Override
-    public void execute(UI.Context context, String[] args) {
+    public void execute(String[] args) {
         if (args.length < 2) {
             System.out.println("Недостаточно аргументов. Введите путь до .order файла");
             return;

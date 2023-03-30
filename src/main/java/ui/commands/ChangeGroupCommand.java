@@ -3,13 +3,13 @@ package ui.commands;
 import ui.UI;
 
 public class ChangeGroupCommand extends Command {
-    public ChangeGroupCommand() {
+    public ChangeGroupCommand(UI.Context context) {
         super("change_group", "поменять группу для отправки (аргументы id и token)",
-                new String[]{"cg", "chg"});
+                new String[]{"cg", "chg"}, context);
     }
 
     @Override
-    public void execute(UI.Context context, String[] args) {
+    public void execute(String[] args) {
         if (args.length < 3) {
             System.out.println("Недостаточно аргументов. Введите id группы и токен через пробел");
             return;

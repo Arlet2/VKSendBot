@@ -36,7 +36,7 @@ public class ConsoleUI extends UI {
             if (!optionalCommand.isPresent())
                 System.out.println("Команда не найдена. Используйте help, чтобы посмотреть все команды");
             else
-                optionalCommand.get().execute(context, input);
+                optionalCommand.get().execute(input);
         }
     }
 

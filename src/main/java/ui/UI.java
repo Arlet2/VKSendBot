@@ -37,7 +37,7 @@ public abstract class UI {
                     return;
 
                 try {
-                    commands.add((Command) commandClass.getDeclaredConstructor().newInstance());
+                    commands.add((Command) commandClass.getDeclaredConstructor(this.getClass()).newInstance(this));
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                          NoSuchMethodException e) {
                     throw new RuntimeException(e); // todo: ignore
