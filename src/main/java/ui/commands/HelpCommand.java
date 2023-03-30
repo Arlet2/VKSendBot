@@ -3,12 +3,12 @@ package ui.commands;
 import ui.UI;
 
 public class HelpCommand extends Command {
-    public HelpCommand() {
-        super("help", "выводит список всех команд", new String[]{"h"});
+    public HelpCommand(UI.Context context) {
+        super("help", "выводит список всех команд", new String[]{"h"}, context);
     }
 
     @Override
-    public void execute(UI.Context context, String[] args) {
+    public void execute(String[] args) {
         for (Command i : context.getCommands()) {
             System.out.print(i.name + " - " + i.description);
             if (i.getAliases().length != 0) {

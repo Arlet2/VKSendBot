@@ -7,10 +7,11 @@
     <groupId>com.arlet</groupId>
     <artifactId>VKSendBot</artifactId>
     <version>2.0.0-TEST-SNAPSHOT</version>
-
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
         <mainClassName>Application</mainClassName>
     </properties>
 

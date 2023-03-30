@@ -8,12 +8,12 @@ import java.util.List;
 public class ViewCommand extends Command {
     private final FileViewer fileViewer = new FileViewer();
 
-    public ViewCommand() {
-        super("view", "показать все .order файлы в директории (аргументы dirName)");
+    public ViewCommand(UI.Context context) {
+        super("view", "показать все .order файлы в директории (аргументы dirName)", context);
     }
 
     @Override
-    public void execute(UI.Context context, String[] args) {
+    public void execute(String[] args) {
         List<String> fileNames;
         if (args.length == 1) {
             fileNames = fileViewer.getAllFilesFromDir("");

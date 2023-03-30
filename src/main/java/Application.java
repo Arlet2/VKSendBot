@@ -14,6 +14,7 @@ public class Application {
     private static VkApiClient api;
 
     private static SendService sendService;
+    private static AuthJsonReader authJsonReader;
 
     public static void main(String[] args) {
         initApi();
@@ -35,9 +36,9 @@ public class Application {
 
     private static void initServices() {
         sendService = new SendService(api);
-
+        authJsonReader = new AuthJsonReader();
         try {
-            AuthData authData = new AuthJsonReader().read("auth.json");
+            AuthData authData = authJsonReader.read("auth.json");
             sendService.changeGroupActor(authData.getGroupId(), authData.getToken());
         } catch (FileNotFoundException e) {
             System.out.println("Файл auth.json не был найден! Добавьте группу для использования бота");
