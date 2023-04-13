@@ -1,6 +1,7 @@
 auth.json
 *.report
-changelist.txt
 target/
 .idea
 *.jar
+build
+.gradle
