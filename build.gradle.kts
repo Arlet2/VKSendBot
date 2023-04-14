@@ -1,5 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.gradle.internal.impldep.org.joda.time.LocalDateTime
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "space.arlet"
 version = "1.3.0-TEST-SNAPSHOT"
@@ -14,8 +14,10 @@ repositories {
 
 plugins {
     id("java")
+    kotlin("jvm") version "1.8.20"
     id("application")
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("org.jetbrains.compose") version "1.4.0"
 }
 
 val mainClassName = "Application"
@@ -28,7 +30,7 @@ dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
-    implementation("org.jetbrains.compose.desktop:desktop:1.3.1")
+    implementation(compose.desktop.currentOs)
 }
 
 application {
@@ -39,6 +41,10 @@ tasks.named<JavaCompile>("compileJava") {
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
     options.encoding = "UTF-8"
+}
+
+tasks.named<KotlinCompile>("compileKotlin") {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 }
 
 tasks.named<ShadowJar>("shadowJar") {
