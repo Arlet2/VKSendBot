@@ -22,7 +22,12 @@ public class Application {
 
         initServices();
 
-        UI ui = new GraphicalUI(sendService);//new ConsoleUI(sendService);
+        UI ui;
+
+        if (args.length > 1 && args[1].equals("--console"))
+            ui = new ConsoleUI(sendService);
+        else
+            ui = new GraphicalUI(sendService);
 
         ui.startInteraction();
     }
