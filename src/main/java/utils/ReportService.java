@@ -25,7 +25,7 @@ public class ReportService {
                             .appendPattern("dd.MM.yy_(HH.mm)")
                             .toFormatter());
 
-            FileWriter writer = new FileWriter(FILE_NAME + "_" + time + ".report");
+            var writer = new FileWriter(FILE_NAME + "_" + time + ".report");
 
             writer.write(stringBuffer.toString());
             writer.flush();

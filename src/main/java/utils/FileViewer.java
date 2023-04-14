@@ -8,15 +8,15 @@ import java.util.stream.Collectors;
 
 public class FileViewer {
 
-    public List<String> getAllFilesFromDir(String dirName) {
-        File dir = new File(dirName);
+    public Optional<List<String>> getAllFilesFromDir(String dirName) {
+        var dir = new File(dirName);
 
-        if (!Optional.ofNullable(dir.listFiles()).isPresent())
-            return null;
+        if (dir.listFiles() == null)
+            return Optional.empty();
 
-        return Arrays.stream(dir.listFiles())
+        return Optional.of(Arrays.stream(dir.listFiles())
                 .map(File::getName)
                 .filter(name -> name.matches(".*\\.order"))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }

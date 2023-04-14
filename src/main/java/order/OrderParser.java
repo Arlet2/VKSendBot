@@ -32,9 +32,9 @@ public class OrderParser {
     }
 
     private String getContentFromFile(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(path));
+        var reader = new BufferedReader(new FileReader(path));
 
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
 
         reader.lines().forEach((line) -> {
             stringBuilder.append(line).append("\n");

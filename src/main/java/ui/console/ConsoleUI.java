@@ -17,7 +17,7 @@ public class ConsoleUI extends UI {
     @Override
     public void startInteraction() {
         String[] input;
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
 
         context.setProgramInterrupted(false);
 
@@ -33,7 +33,7 @@ public class ConsoleUI extends UI {
 
             Optional<Command> optionalCommand = searchCommand(input[0]);
 
-            if (!optionalCommand.isPresent())
+            if (optionalCommand.isEmpty())
                 System.out.println("Команда не найдена. Используйте help, чтобы посмотреть все команды");
             else
                 optionalCommand.get().execute(input);
