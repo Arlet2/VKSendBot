@@ -26,7 +26,7 @@ val javaVersion = "11"
 
 dependencies {
     implementation("com.vk.api:sdk:1.0.14")
-    implementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:4.13.2")
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
