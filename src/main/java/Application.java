@@ -1,4 +1,6 @@
 import auth.AuthData;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
@@ -43,12 +45,20 @@ public class Application {
     private static void initServices() {
         sendService = new SendService(api);
         authJsonReader = new AuthJsonReader();
+
         try {
-            AuthData authData = authJsonReader.read("auth.json");
-            sendService.changeGroupActor(authData.getGroupId(), authData.getToken());
+            readAuthJson();
         } catch (FileNotFoundException e) {
             System.out.println("Файл auth.json не был найден! Добавьте группу для использования бота");
+        } catch (JsonIOException | JsonSyntaxException e) {
+            System.out.println("Файл auth.json составлен неверно");
         }
+    }
+
+    public static void readAuthJson() throws FileNotFoundException {
+        AuthData authData = authJsonReader.read("auth.json");
+        sendService.changeGroupActor(authData.getGroupId(), authData.getToken());
+
     }
 
 }
