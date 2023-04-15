@@ -2,6 +2,7 @@ package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 
@@ -25,7 +26,7 @@ public class ReportService {
                             .appendPattern("dd.MM.yy_(HH.mm)")
                             .toFormatter());
 
-            var writer = new FileWriter(FILE_NAME + "_" + time + ".report");
+            var writer = new FileWriter(FILE_NAME + "_" + time + ".report", StandardCharsets.UTF_8);
 
             writer.write(stringBuffer.toString());
             writer.flush();
