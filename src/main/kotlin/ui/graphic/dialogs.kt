@@ -48,7 +48,14 @@ fun InfoDialog(onDismissRequest: () -> Unit, message: String = "") {
     AlertDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(text = "Информация") },
-        text = { Text(text = message) },
+        text = {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = message, textAlign = TextAlign.Center)
+            }
+        },
         buttons = {
             Box(
                 contentAlignment = Alignment.Center,
