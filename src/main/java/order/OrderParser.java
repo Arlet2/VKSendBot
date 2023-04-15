@@ -6,6 +6,7 @@ import utils.RegexSearcher;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class OrderParser {
@@ -32,7 +33,7 @@ public class OrderParser {
     }
 
     private String getContentFromFile(String path) throws IOException {
-        var reader = new BufferedReader(new FileReader(path));
+        var reader = new BufferedReader(new FileReader(path, StandardCharsets.UTF_8));
 
         var stringBuilder = new StringBuilder();
 
