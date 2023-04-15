@@ -1,39 +1,56 @@
 package ui.graphic
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import order.Order
 import services.SendService
 import ui.UI
 
-class GraphicalUI(sendService: SendService?) : UI(sendService) {
-
+class GraphicalUI(private val sendService: SendService) : UI(sendService) {
     @Composable
-    @Preview
-    fun lol() {
-        var text by remember { mutableStateOf("Hello, Worldd!") }
-
-        MaterialTheme {
-            Button(onClick = {
-                text = "Hello, Desktop!"
-            }) {
-                Text(text)
-            }
+    fun application() {
+        val order = remember { mutableStateOf(Order("", arrayOf())) }
+        val groupId = remember {
+            mutableStateOf(
+                if (sendService.groupActor != null) sendService.groupActor.groupId ?: -1 else -1
+            )
+        }
+        val token = remember {
+            mutableStateOf(
+                if (sendService.groupActor != null) sendService.groupActor.accessToken ?: "" else ""
+            )
+        }
+        Row(modifier = Modifier.fillMaxSize()) {
+            leftPanel(
+                modifier = Modifier.weight(1f),
+                token = token,
+                groupId = groupId,
+                sendService = sendService
+            )
+            centerPanel(
+                modifier = Modifier.weight(1f),
+                order = order,
+                groupId = groupId,
+                token = token
+            )
+            rightPanel(
+                modifier = Modifier.weight(1f),
+                order
+            )
         }
     }
 
+
     override fun startInteraction() {
         application {
-            Window(onCloseRequest = ::exitApplication) {
-                lol()
+            Window(onCloseRequest = ::exitApplication, title = "VKSendBot") {
+                MaterialTheme {
+                    application()
+                }
             }
         }
     }
