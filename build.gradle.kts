@@ -30,7 +30,9 @@ dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
-    implementation(compose.desktop.currentOs)
+    implementation(compose.desktop.windows_x64)
+    implementation(compose.desktop.linux_x64)
+    implementation(compose.desktop.macos_x64)
 }
 
 application {
