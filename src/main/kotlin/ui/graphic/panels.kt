@@ -280,56 +280,76 @@ fun rightPanel(
 
     val orderParser = OrderParser()
 
-    panel(
-        verticalPadding = defaultVerticalPadding,
-        modifier = Modifier.then(modifier),
-        verticalArrangement = Arrangement.Top,
+    Box(
+        modifier = Modifier.then(modifier)
     ) {
-        Button(
-            onClick = {
-                showFileDialog.value = true
-            },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+        Box(
+            contentAlignment = Alignment.TopEnd,
         ) {
-            Text(
-                text = "Считать приказ из файла"
-            )
-        }
-
-        Button(
-            onClick = {
-                showOrderCreatingDialog.value = true
-            },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text(
-                text = "Ввести приказ"
-            )
-        }
-
-        if (showOrderCreatingDialog.value) {
-            OrderDialog(
-                onDismissRequest = { showOrderCreatingDialog.value = false },
-                order = order
-            )
-        }
-
-        if (showFileDialog.value) {
-            ComposeFileDialog(
-                onCloseRequest = { fileName ->
-                    showFileDialog.value = false
-                    if (fileName == "")
-                        return@ComposeFileDialog
-                    try {
-                        order.value = orderParser.parseOrder(fileName)
-                    } catch (e: IOException) {
-                        errorDialogMessage.value = "Не удалось открыть файл"
-                        return@ComposeFileDialog
-                    }
-                    infoDialogMessage.value = "Успешно."
+            Button(
+                onClick = {
+                    infoDialogMessage.value = "test"
                 }
-            )
+            ) {
+                Text("Help")
+            }
         }
 
+        panel(
+            verticalPadding = defaultVerticalPadding,
+            modifier = Modifier.then(modifier),
+            verticalArrangement = Arrangement.Top,
+        ) {
+
+
+            Button(
+                onClick = {
+                    showFileDialog.value = true
+
+                },
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                enabled = !showFileDialog.value // защита от псевдо двойного нажатия
+            ) {
+                Text(
+                    text = "Считать приказ из файла"
+                )
+            }
+
+            Button(
+                onClick = {
+                    showOrderCreatingDialog.value = true
+                },
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(
+                    text = "Ввести приказ"
+                )
+            }
+
+            if (showOrderCreatingDialog.value) {
+                OrderDialog(
+                    onDismissRequest = { showOrderCreatingDialog.value = false },
+                    order = order
+                )
+            }
+
+            if (showFileDialog.value) {
+                ComposeFileDialog(
+                    onCloseRequest = { fileName ->
+                        showFileDialog.value = false
+                        if (fileName == "")
+                            return@ComposeFileDialog
+                        try {
+                            order.value = orderParser.parseOrder(fileName)
+                        } catch (e: IOException) {
+                            errorDialogMessage.value = "Не удалось открыть файл"
+                            return@ComposeFileDialog
+                        }
+                        infoDialogMessage.value = "Успешно."
+                    }
+                )
+            }
+
+        }
     }
 }
