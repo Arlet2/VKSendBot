@@ -5,7 +5,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.useResource
 import androidx.compose.ui.window.Window
@@ -13,7 +12,6 @@ import androidx.compose.ui.window.application
 import order.Order
 import services.SendService
 import ui.UI
-import java.awt.Image
 
 class GraphicalUI(private val sendService: SendService) : UI(sendService) {
     @Composable
