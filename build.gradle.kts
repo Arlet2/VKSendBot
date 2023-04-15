@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "space.arlet"
-version = "1.3.0-TEST-SNAPSHOT"
+version = "1.3.0-beta"
 
 val artifactId = "VKSendBot"
 
